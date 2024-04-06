@@ -2,6 +2,7 @@ import random
 import json
 import pickle
 import numpy as np
+import sys
 
 import nltk
 from nltk.stem import WordNetLemmatizer
@@ -12,9 +13,9 @@ from tensorflow.keras.models import load_model
 lemmatizer = WordNetLemmatizer()
 intents = json.loads(open('intents.json').read())
 
-words = pickle.load(open('words.pkl', 'rb'))
-classes = pickle.load(open('classes.pkl', 'rb'))
-model = load_model('chatbot_model.h5')
+words = pickle.load(open('data/words.pkl', 'rb'))
+classes = pickle.load(open('data/classes.pkl', 'rb'))
+model = load_model('data/chatbot_model.h5')
 
 def clean_up_sentence(sentence):
     sentence_words = nltk.word_tokenize(sentence)
@@ -30,7 +31,7 @@ def bag_of_words(sentence):
                 bag[i] = 1
     return np.array(bag)
 
-def predict_class(sentence):
+def predict_class(sentence):   
     bow = bag_of_words(sentence)
     res = model.predict(np.array([bow]))[0]
     ERROR_THRESHOLD = 0.25
@@ -54,8 +55,9 @@ def get_response(intents_list, intents_json):
 
 print("Go! Bot is running!")
 
-while True:
-    message = input("")
-    ints = predict_class(message)
-    res = get_response(ints, intents)
-    print(res)
+
+message = sys.argv[1]
+print(message)
+ints = predict_class(message)
+res = get_response(ints, intents)
+print(res)

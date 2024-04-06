@@ -7,6 +7,8 @@ from nltk.stem import WordNetLemmatizer
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Activation, Dropout
 from tensorflow.keras.optimizers import SGD
+nltk.download('punkt')
+nltk.download('wordnet')
 
 # Initialize WordNetLemmatizer
 lemmatizer = WordNetLemmatizer()
@@ -35,8 +37,8 @@ words = sorted(set(words))
 classes = sorted(set(classes))
 
 # Save words and classes to pickle files
-pickle.dump(words, open('words.pkl', 'wb'))
-pickle.dump(classes, open('classes.pkl', 'wb'))
+pickle.dump(words, open('data/words.pkl', 'wb'))
+pickle.dump(classes, open('data/classes.pkl', 'wb'))
 
 # Create training data
 training = []
@@ -76,6 +78,6 @@ model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy
 hist = model.fit(train_x, train_y, epochs=200, batch_size=5, verbose=1)
 
 # Save the model
-model.save('chatbot_model.h5')
+model.save('data/chatbot_model.h5')
 
 print('Done')
