@@ -1,0 +1,32 @@
+## Start vagrant VM
+
+In order to run vagrantFile head to the /vagrant directory of the gitHub project and run:
+
+<span style="background-color: #f0f0f0;">vagrant up</span>
+
+
+## Connect with SSH
+
+If the vm has started running type in the terminal:
+
+<span style="background-color: #f0f0f0;">vagrant ssh-config >> ~/.ssh/config</span>
+
+If the config file is not in the ~/.ssh directory create it and then run the command.
+
+To connect with terminal to the vm type:
+
+<span style="background-color: #f0f0f0;">ssh dbserverAI</span>
+
+
+## Ansible postgres
+
+To setup a postgres database in the newly created vm head to the directory where the ansible.cfg file is located and run the following command:
+
+<span style="background-color: #f0f0f0;">ansible-playbook playbooks/postgres.yaml -l dbserver-vm </span>
+
+to test if the setup was successful in the vm's terminal run this command:
+
+<span style="background-color: #f0f0f0;">psql -h localhost -U appuser -d appdb -W
+ </span>
+
+and as a password type :  **apppassword**

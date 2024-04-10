@@ -1,0 +1,16 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+   config.vm.define "dbserverAI" do |db|
+    db.vm.box = "ubuntu/jammy64"
+    db.vm.hostname = "dbserveAI"
+    db.vm.network "private_network", ip: "192.168.56.101"
+    db.vm.provision "shell", path: "scripts/key.sh"
+    db.vm.provider "virtualbox" do |v|
+      v.name = "dbserverAI"
+      v.memory = 1024
+      v.cpus = 2
+    end
+  end
+end

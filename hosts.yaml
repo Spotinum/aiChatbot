@@ -1,0 +1,12 @@
+---
+control:
+  hosts:
+    local-control:
+      ansible_connection: local
+    control-vm:
+      ansible_host: control
+
+dbservers:
+    hosts:
+      dbserver-vm:
+          ansible_host: dbserverAI
