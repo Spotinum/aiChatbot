@@ -1,0 +1,20 @@
+<tags>
+
+  <div th:if="${ not#lists.isEmpty(intents)}">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Tags</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="intent : ${intents}">
+        <td th:text="${intent.tag}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div th:if="${ #lists.isEmpty(intents)}">
+    No Tags found!
+  </div>
+</tags>
