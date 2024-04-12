@@ -1,0 +1,23 @@
+<patterns>
+
+    <div th:if="${ not#lists.isEmpty(patterns)}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Pattern</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="pattern : ${patterns}">
+                <td th:text="${pattern.pattern}"></td>
+                <td><a class="btn btn-danger" th:href="@{/}">Remove Pattern</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${ #lists.isEmpty(patterns)}">
+        No Patterns found!
+    </div>
+    <a th:href="@{/patterns/new/{id}(id=${intentId})}" class="btn btn-primary" role="button">Create new Pattern</a>
+</patterns>

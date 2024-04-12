@@ -22,4 +22,9 @@ public class IntentsService {
     public Iterable<Intents> findAllIntents(){
         return intentsRepository.findAll();
     }
+
+    @Transactional
+    public Intents findIntentById(Integer id){
+        return intentsRepository.findById(id).get();
+    }
 }
