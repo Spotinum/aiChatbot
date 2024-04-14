@@ -11,7 +11,7 @@
             <tbody>
             <tr th:each="pattern : ${patterns}">
                 <td th:text="${pattern.pattern}"></td>
-                <td><a class="btn btn-danger" th:href="@{/}">Remove Pattern</a></td>
+                <td><a class="btn btn-danger" th:href="@{/patterns/remove/{patternId}/{intentId}(patternId=${pattern.id}, intentId=${intentId})}">Remove Pattern</a></td>
             </tr>
             </tbody>
         </table>

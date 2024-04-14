@@ -45,4 +45,12 @@ public class patternsController {
         patternsService.savePatterns(pattern);
         return "redirect:/patterns/list/" + id;
     }
+
+
+    @GetMapping("/remove/{Patternid}/{Intentid}")
+    private String removePattern(@PathVariable Integer Patternid, @PathVariable Integer Intentid){
+        patternsService.removePattern(Patternid);
+        return "redirect:/patterns/list/" + Intentid;
+    }
 }
+

@@ -34,4 +34,9 @@ public class PatternsService {
         return patternsOfIntent;
     }
 
+    @Transactional
+    public void removePattern(Integer patternId){
+        patternsRepository.deleteById(patternId);
+    }
+
 }
