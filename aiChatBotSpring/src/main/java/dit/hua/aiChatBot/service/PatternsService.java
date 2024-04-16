@@ -39,4 +39,9 @@ public class PatternsService {
         patternsRepository.deleteById(patternId);
     }
 
+    @Transactional
+    public Iterable<Patterns> findAllPatterns(){
+        return patternsRepository.findAll();
+    }
+
 }

@@ -38,4 +38,9 @@ public class ResponsesService {
         }
         return responsesOfIntent;
     }
+
+    @Transactional
+    public Iterable<Responses> findAllResponses(){
+        return responsesRepository.findAll();
+    }
 }

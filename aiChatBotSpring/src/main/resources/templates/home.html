@@ -10,6 +10,12 @@
     <div class="container" >
         <div th:replace="fragments/tags :: tags"></div>
     </div>
+    <div class="container">
+        <form th:action="@{/chatbot/chat}" method="post">
+            <input type="text" name="message" placeholder="Enter your message" />
+            <button type="submit">Send</button>
+        </form>
+    </div>
 </main>
 
 <!-- Include the footer fragment -->
