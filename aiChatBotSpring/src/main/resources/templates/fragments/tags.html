@@ -16,7 +16,8 @@
           <a class="btn btn-warning" th:href="@{/patterns/list/{id}(id=${intent.id})}">List Patterns</a>
         </td>
         <td>
-          <button type="button" class="btn btn-warning"><a href="/tbd" style="text-decoration: none; color: inherit;">List Responses</a></button>
+          <a class="btn btn-warning" th:href="@{/responses/list/{id}(id=${intent.id})}">List Responses</a>
+
         </td>
       </tr>
       </tbody>

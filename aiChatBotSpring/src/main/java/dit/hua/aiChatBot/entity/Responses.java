@@ -3,7 +3,7 @@ package dit.hua.aiChatBot.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class Reponses {
+public class Responses {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,13 +18,13 @@ public class Reponses {
     @JoinColumn(name="intent_id")
     private Intents intents;
 
-    public Reponses(Integer id, String response, Intents intents) {
+    public Responses(Integer id, String response, Intents intents) {
         this.id = id;
         this.response = response;
         this.intents = intents;
     }
 
-    public Reponses() {
+    public Responses() {
 
     }
 

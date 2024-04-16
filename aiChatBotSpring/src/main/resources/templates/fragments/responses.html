@@ -1,0 +1,23 @@
+<responses>
+
+    <div th:if="${ not#lists.isEmpty(responses)}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Response</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="response : ${responses}">
+                <td th:text="${response.response}"></td>
+                <td><a class="btn btn-danger" th:href="@{/responses/remove/{responseId}/{intentId}(responseId=${response.id}, intentId=${intentId})}">Remove Response</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${ #lists.isEmpty(responses)}">
+        No Responses found!
+    </div>
+    <a th:href="@{/responses/new/{id}(id=${intentId})}" class="btn btn-primary" role="button">Create new Response</a>
+</responses>
