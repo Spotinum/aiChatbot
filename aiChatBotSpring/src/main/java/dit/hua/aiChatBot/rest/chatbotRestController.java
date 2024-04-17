@@ -28,7 +28,7 @@ public class chatbotRestController {
 
     @PostMapping("/chat")
     public ResponseEntity<String> chatBotAnswer(@RequestBody String message){
-        return ResponseEntity.ok("Harokopio Bot: "+ chatBotThinking(message));
+        return ResponseEntity.ok(chatBotThinking(message));
     }
 
 
@@ -64,6 +64,9 @@ public class chatbotRestController {
                     intentIndex = i;
                 }
             }
+        }
+        if (mostCommonCount == 0){
+            return "I am sorry, I do not understand you.";
         }
         //Get the responses array
         List<Responses> responsesOfIntent = (List<Responses>) responsesService.findResponsesOfIntent(intents.get(intentIndex).getId());
