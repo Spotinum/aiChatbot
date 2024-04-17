@@ -12,14 +12,14 @@
         </div>
         <div class="messageRow bot" v-else>
           <div class="message bot">
-            <p>{{ message.message }}</p>
+            <p style="color: black">{{ message.message }}</p>
           </div>
         </div>
       </div>
     </div>
     <div class="chatFooter">
       <form @submit.prevent="sendMessage()">
-        <input v-model="messageContent" id="createMessage" />
+        <input v-model="messageContent" id="createMessage" placeholder="Type Here..."/>
         <input type="submit" />
       </form>
     </div>
@@ -56,7 +56,10 @@ export default {
     }
 
     async function getResponse(message) {
-      const { data } = await axios.post("http://localhost:9090/api/chat", message);
+      const postData = {
+        message: message,
+      };
+      const { data } = await axios.post("http://localhost:9090/api/chat", postData.message);
       createMessage(data);
     }
 
@@ -78,7 +81,7 @@ body {
 }
 
 #chatContainer {
-  background-color: #282c34;
+  background-color: white;
   height: 90vh; 
   width: 90vw; 
   margin: 0;
@@ -86,6 +89,7 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #chatContainer.expanded .chatBody {
@@ -93,12 +97,17 @@ body {
 }
 .chatHeader {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  color: white;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .chatFooter {
   position: absolute;
   bottom: 0px;
   width: 100%;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+
 }
 .chatFooter form {
   display: flex;
@@ -115,7 +124,9 @@ body {
   width: 80%;
 }
 input:not(#createMessage) {
-  background-color: green;
+  margin-top: 10px;
+  background-color: #1982fc;
+  border-radius: 20px;
   border: 0;
   color: white;
   padding: 10px;
@@ -128,6 +139,10 @@ input:not(#createMessage):hover {
 .messageRow {
   display: flex;
   justify-content: flex-end;
+}
+
+.message bot{
+  color: black;
 }
 .messageRow.bot {
   justify-content: flex-start;
@@ -145,7 +160,8 @@ input:not(#createMessage):hover {
   background-color: #1982fc;
 }
 .messageRow.bot .message {
-  background-color: #43cc47;
+  background-color: #f7fcf7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .chatBody::-webkit-scrollbar {
   width: 0px;

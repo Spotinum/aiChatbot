@@ -28,6 +28,9 @@ public class chatbotRestController {
 
     @PostMapping("/chat")
     public ResponseEntity<String> chatBotAnswer(@RequestBody String message){
+        System.out.println("Message: " + message);
+        message = message.replace("+", " ");
+        System.out.println("Message: " + chatBotThinking(message));
         return ResponseEntity.ok(chatBotThinking(message));
     }
 
@@ -35,7 +38,7 @@ public class chatbotRestController {
     private String chatBotThinking(String message){
 
         List<Intents> intents = (List<Intents>) intentsService.findAllIntents();
-        String[] givenWords = message.split("[\\s,.!?]+");
+        String[] givenWords = message.split("[\\s,.!?%]+");
         Integer mostCommonCount = 0;
         Integer intentIndex = 0;
 
@@ -48,7 +51,7 @@ public class chatbotRestController {
             for (int j = 0; j < patternsOfIntent.size(); j++) {
                 String pattern = patternsOfIntent.get(j).getPattern();
                 //Split the pattern into individual words
-                String[] words = pattern.split("[\\s,.!?]+");
+                String[] words = pattern.split("[\\s,.!?%]+");
                 Integer count = 0;
                 for (String word : words) {
                     for(String given : givenWords){
@@ -65,12 +68,14 @@ public class chatbotRestController {
                 }
             }
         }
-        if (mostCommonCount == 0){
-            return "I am sorry, I do not understand you.";
-        }
+
+
         //Get the responses array
         List<Responses> responsesOfIntent = (List<Responses>) responsesService.findResponsesOfIntent(intents.get(intentIndex).getId());
-
+        if (mostCommonCount == 0){
+            //get a random response from the intent with tag Noanswer
+            responsesOfIntent = (List<Responses>) responsesService.findResponsesOfIntent(252);
+        }
         //Get a random response
         int randomIndex = (int) (Math.random() * responsesOfIntent.size());
         String response = responsesOfIntent.get(randomIndex).getResponse();
