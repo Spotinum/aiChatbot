@@ -19,7 +19,7 @@
     </div>
     <div class="chatFooter">
       <form @submit.prevent="sendMessage()">
-        <input v-model="messageContent" id="createMessage" placeholder="Type Here..."/>
+        <input v-model="messageContent" id="createMessage" placeholder="Type Here..." class="inputBox">
         <input type="submit" />
       </form>
     </div>
@@ -171,5 +171,15 @@ input:not(#createMessage):hover {
 .botName {
   margin: 0;
   padding: 10px;
+}
+
+.inputBox {
+  width: 80%;
+  padding: 10px;
+  border-radius: 20px;
+  border: 0;
+  margin: 10px;
+  margin-left: 0;
+  size: 40px;
 }
 </style>
